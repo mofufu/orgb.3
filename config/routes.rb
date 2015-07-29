@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :company_summaries
+
   resources :business_plans
 
   resources :marketing_plans
