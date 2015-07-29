@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :marketing_plans
+
   resources :sections
 
   resources :swots
