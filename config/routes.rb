@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :basics
+
   resources :buyer_profiles
 
   resources :resources
