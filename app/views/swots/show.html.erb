@@ -1,29 +1,32 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Swot -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Swot %></h1>
+</div>
 
-<p>
-  <strong>Company name:</strong>
-  <%= @swot.company_name %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:company_name) %></dt>
+      <dd><pre class="prettyprint"><%= @swot.company_name %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:strength) %></dt>
+      <dd><pre class="prettyprint"><%= @swot.strength %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:weak) %></dt>
+      <dd><pre class="prettyprint"><%= @swot.weak %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:opportunity) %></dt>
+      <dd><pre class="prettyprint"><%= @swot.opportunity %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:threat) %></dt>
+      <dd><pre class="prettyprint"><%= @swot.threat %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>Strength:</strong>
-  <%= @swot.strength %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              swots_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_swot_path(@swot), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              swot_path(@swot),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<p>
-  <strong>Weak:</strong>
-  <%= @swot.weak %>
-</p>
-
-<p>
-  <strong>Opportunity:</strong>
-  <%= @swot.opportunity %>
-</p>
-
-<p>
-  <strong>Threat:</strong>
-  <%= @swot.threat %>
-</p>
-
-<%= link_to 'Edit', edit_swot_path(@swot) %> |
-<%= link_to 'Back', swots_path %>

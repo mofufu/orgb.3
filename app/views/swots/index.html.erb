@@ -1,33 +1,44 @@
-<h1>Listing swots</h1>
-
-<table>
+<%- model_class = Swot -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Swot %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Company name</th>
-      <th>Strength</th>
-      <th>Weak</th>
-      <th>Opportunity</th>
-      <th>Threat</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:company_name) %></th>
+      <th><%= model_class.human_attribute_name(:strength) %></th>
+      <th><%= model_class.human_attribute_name(:weak) %></th>
+      <th><%= model_class.human_attribute_name(:opportunity) %></th>
+      <th><%= model_class.human_attribute_name(:threat) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @swots.each do |swot| %>
       <tr>
+        <td><%= swot.id %></td>
         <td><%= swot.company_name %></td>
         <td><%= swot.strength %></td>
         <td><%= swot.weak %></td>
         <td><%= swot.opportunity %></td>
         <td><%= swot.threat %></td>
-        <td><%= link_to 'Show', swot %></td>
-        <td><%= link_to 'Edit', edit_swot_path(swot) %></td>
-        <td><%= link_to 'Destroy', swot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l swot.created_at, format: :long %></td>
+        <td>
+          <%= link_to swot_path(swot), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to swot_path(swot), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Swot', new_swot_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_swot_path,
+            :class => 'btn btn-primary' %>
